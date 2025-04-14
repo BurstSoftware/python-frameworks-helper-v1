@@ -54,7 +54,6 @@ frameworks_data = {
         "PySimpleGUI": "A simplified wrapper for rapid GUI prototyping.",
         "Eel": "A framework for desktop apps with HTML/CSS/JS frontends."
     },
-    # Add remaining categories with placeholder descriptions for brevity
     "Game Development Frameworks": {
         "Pygame": "A popular library for 2D game development.",
         "Pyglet": "A cross-platform library for games and multimedia.",
@@ -802,41 +801,22 @@ frameworks_data = {
         "PyClimateSim": "A framework for climate dynamics.",
         "SynthClimaPy": "A tool for synthetic datasets."
     },
-    "Soil Science and Agronomy Frameworks": {
-        "PySoil": "A library for soil analysis (repeated).",
-        "SoilPy": "A framework for moisture simulation (repeated).",
-        "AgroPy": "A tool for crop-soil studies (repeated)."
-    },
-    "Glaciology and Ice Dynamics Frameworks": {
-        "PyGlacier": "A library for glacier simulation (repeated).",
-        "OGGM": "A framework for glacier modeling (repeated).",
-        "PyIce": "A tool for ice sheet dynamics (repeated)."
-    },
-    "Olfactory and Scent Analysis Frameworks": {
-        "PySmell": "A library for scent classification (repeated).",
-        "ScentPy": "A framework for chemical modeling (repeated).",
-        "OlfactPy": "A tool for sensor integration (repeated)."
-    },
-    # Placeholder descriptions for remaining frameworks
 }
 
 # Streamlit app
 st.title("Python Frameworks Explorer")
-st.write("Select a category and framework to view its description.")
+st.write("Choose a framework category to view its associated frameworks and descriptions.")
 
-# Create a sidebar for category selection
-category = st.sidebar.selectbox("Choose a Category", list(frameworks_data.keys()))
+# Display dropdown for categories at the top of the main app
+category = st.selectbox("Select a Category", list(frameworks_data.keys()))
 
-# Display dropdown for frameworks in the selected category
+# Display a list of frameworks and their descriptions for the selected category
 if category:
-    frameworks = list(frameworks_data[category].keys())
-    selected_framework = st.selectbox(f"Select a Framework from {category}", frameworks)
-
-    # Display the framework and its description
-    if selected_framework:
-        description = frameworks_data[category].get(selected_framework, "Description not available yet.")
-        st.subheader(selected_framework)
+    st.subheader(f"Frameworks in {category}")
+    frameworks = frameworks_data[category]
+    
+    # Iterate through each framework and display its name and description
+    for framework, description in frameworks.items():
+        st.markdown(f"**{framework}**")
         st.write(description)
-
-# Note: For brevity, not all 625 frameworks have full descriptions here.
-# You can expand the `frameworks_data` dictionary with descriptions for all frameworks as needed.
+        st.markdown("---")  # Add a horizontal line for separation between frameworks
